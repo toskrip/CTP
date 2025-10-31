@@ -348,10 +348,10 @@ public class StorageServlet extends Servlet {
 					
 					//Add an index if this entry already exists
 					Integer n = entryNames.get(entryName);
-					if (n == null) entryNames.put(entryName, new Integer(0));
+					if (n == null) entryNames.put(entryName, Integer.valueOf(0));
 					else {
 						int nint = n.intValue() + 1;
-						entryNames.put(entryName, new Integer(nint));
+						entryNames.put(entryName, Integer.valueOf(nint));
 						k = entryName.lastIndexOf(".");
 						if (k != -1) entryName = entryName.substring(0,k)+"["+nint+"]"+entryName.substring(k);
 						else entryName += "["+nint+"]";

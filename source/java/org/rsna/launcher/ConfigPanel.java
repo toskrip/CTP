@@ -371,7 +371,7 @@ public class ConfigPanel extends BasePanel {
 
 			JMenu fileMenu = new JMenu("File");
 			JMenuItem saveItem = new JMenuItem("Save");
-			saveItem.setAccelerator( KeyStroke.getKeyStroke('S', InputEvent.CTRL_MASK) );
+			saveItem.setAccelerator( KeyStroke.getKeyStroke('S', InputEvent.CTRL_DOWN_MASK) );
 			saveItem.addActionListener( new SaveImpl() );
 			fileMenu.add(saveItem);
 			JMenuItem deleteBackupsItem = new JMenuItem("Delete backups");
@@ -380,25 +380,25 @@ public class ConfigPanel extends BasePanel {
 
 			JMenu editMenu = new JMenu("Edit");
 			JMenuItem deleteItem = new JMenuItem("Remove");
-			deleteItem.setAccelerator( KeyStroke.getKeyStroke('R', InputEvent.CTRL_MASK) );
+			deleteItem.setAccelerator( KeyStroke.getKeyStroke('R', InputEvent.CTRL_DOWN_MASK) );
 			deleteItem.addActionListener( new DeleteImpl() );
 			editMenu.add(deleteItem);
 
 			JMenu viewMenu = new JMenu("View");
 			formItem = new JMenuItem("Form");
-			formItem.setAccelerator( KeyStroke.getKeyStroke('F', InputEvent.CTRL_MASK) );
+			formItem.setAccelerator( KeyStroke.getKeyStroke('F', InputEvent.CTRL_DOWN_MASK) );
 			formItem.addActionListener( new FormImpl() );
 			viewMenu.add(formItem);
 			xmlItem = new JMenuItem("XML");
-			xmlItem.setAccelerator( KeyStroke.getKeyStroke('D', InputEvent.CTRL_MASK) );
+			xmlItem.setAccelerator( KeyStroke.getKeyStroke('D', InputEvent.CTRL_DOWN_MASK) );
 			xmlItem.addActionListener( new XmlImpl() );
 			viewMenu.add(xmlItem);
 			JMenuItem expandItem = new JMenuItem("Expand all");
-			expandItem.setAccelerator( KeyStroke.getKeyStroke('E', InputEvent.CTRL_MASK) );
+			expandItem.setAccelerator( KeyStroke.getKeyStroke('E', InputEvent.CTRL_DOWN_MASK) );
 			expandItem.addActionListener( new ExpandImpl() );
 			viewMenu.add(expandItem);
 			JMenuItem collapseItem = new JMenuItem("Collapse all");
-			collapseItem.setAccelerator( KeyStroke.getKeyStroke('W', InputEvent.CTRL_MASK) );
+			collapseItem.setAccelerator( KeyStroke.getKeyStroke('W', InputEvent.CTRL_DOWN_MASK) );
 			collapseItem.addActionListener( new CollapseImpl() );
 			viewMenu.add(collapseItem);
 
@@ -412,7 +412,7 @@ public class ConfigPanel extends BasePanel {
 
 			JMenu pipeMenu = new JMenu("Pipeline");
 			JMenuItem pipeItem = new JMenuItem("New Pipeline");
-			pipeItem.setAccelerator( KeyStroke.getKeyStroke('N', InputEvent.CTRL_MASK) );
+			pipeItem.setAccelerator( KeyStroke.getKeyStroke('N', InputEvent.CTRL_DOWN_MASK) );
 			PipelineImpl pipeImpl = new PipelineImpl();
 			pipeItem.addActionListener(pipeImpl);
 			pipeMenu.add(pipeItem);
@@ -460,7 +460,7 @@ public class ConfigPanel extends BasePanel {
 
 			JMenu helpMenu = new JMenu("Help");
 			JMenuItem helpItem = new JMenuItem("Configuration Editor Instructions");
-			helpItem.setAccelerator( KeyStroke.getKeyStroke('H', InputEvent.CTRL_MASK) );
+			helpItem.setAccelerator( KeyStroke.getKeyStroke('H', InputEvent.CTRL_DOWN_MASK) );
 			HelpImpl helpImpl = new HelpImpl();
 			helpItem.addActionListener(helpImpl);
 			helpMenu.add(helpItem);
@@ -718,10 +718,10 @@ public class ConfigPanel extends BasePanel {
 			if (!attrValue.equals("")) {
 				Integer i = get(attrValue);
 				if (i == null) {
-					put(attrValue, new Integer(1));
+					put(attrValue, Integer.valueOf(1));
 				}
 				else {
-					i = new Integer(i.intValue() + 1);
+					i = Integer.valueOf(i.intValue() + 1);
 					put(attrValue, i);
 					hasDuplicates = true;
 				}
@@ -758,10 +758,10 @@ public class ConfigPanel extends BasePanel {
 				}
 				Integer i = get(attrValue);
 				if (i == null) {
-					put(attrValue, new Integer(1));
+					put(attrValue, Integer.valueOf(1));
 				}
 				else {
-					i = new Integer(i.intValue() + 1);
+					i = Integer.valueOf(i.intValue() + 1);
 					put(attrValue, i);
 					hasDuplicates = true;
 				}

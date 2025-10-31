@@ -10,6 +10,7 @@ package org.rsna.ctp.stdstages.database;
 import java.io.File;
 import java.io.BufferedWriter;
 import java.io.OutputStreamWriter;
+import java.net.URI;
 import java.net.URL;
 import java.util.Map;
 import java.util.Set;
@@ -73,7 +74,7 @@ public class TciaXnatDatabaseAdapter extends DatabaseAdapter {
 		}
 
 		//Get the destination url
-		url = new URL(element.getAttribute("url"));
+		url = new URI(element.getAttribute("url")).toURL();
 		String protocol = url.getProtocol().toLowerCase();
 		if (!protocol.startsWith("https") && !protocol.startsWith("http")) {
 			logger.error("Illegal protocol ("+protocol+")");

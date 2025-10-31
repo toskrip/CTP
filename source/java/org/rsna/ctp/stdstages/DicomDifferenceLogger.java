@@ -31,6 +31,7 @@ import org.w3c.dom.Element;
 /**
  * A pipeline stage for exporting differences in DicomObjects to external databases.
  */
+@SuppressWarnings("unchecked")
 public class DicomDifferenceLogger extends AbstractPipelineStage implements ExportService {
 
 	static final Logger logger = Logger.getLogger(DicomDifferenceLogger.class);
@@ -72,7 +73,7 @@ public class DicomDifferenceLogger extends AbstractPipelineStage implements Expo
 			tagName = tagName.trim();
 			if (!tagName.equals("")) {
 				int tag = DicomObject.getElementTag(tagName);
-				if (tag != 0) tags.add(new Integer(tag));
+				if (tag != 0) tags.add(Integer.valueOf(tag));
 				else logger.warn(name+": Unknown DICOM element tag: \""+tagName+"\"");
 			}
 		}

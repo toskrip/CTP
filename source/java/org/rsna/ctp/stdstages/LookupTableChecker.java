@@ -164,7 +164,7 @@ public class LookupTableChecker extends AbstractPipelineStage implements Process
 			int tag = 0;
 			try { tag = el.tag(); }
 			catch (Exception useZero) { }
-			String command = scriptTable.get(new Integer(tag));
+			String command = scriptTable.get(Integer.valueOf(tag));
 			if (command != null) {
 				if (el.vr() == VRs.SQ) {
 					Matcher processMatcher = processPattern.matcher(command);
@@ -432,7 +432,7 @@ public class LookupTableChecker extends AbstractPipelineStage implements Process
 						Matcher processMatcher = processPattern.matcher(command);
 						Matcher lookupMatcher = lookupPattern.matcher(command);
 						Matcher intervalMatcher = intervalPattern.matcher(command);
-						Integer tagInteger = new Integer(tag);
+						Integer tagInteger = Integer.valueOf(tag);
 						if (processMatcher.find() || lookupMatcher.find() || intervalMatcher.find()) {
 							this.put(tagInteger, command);
 							//logger.info("ScriptTable: "+Integer.toHexString(tagInteger.intValue())+" "+command);

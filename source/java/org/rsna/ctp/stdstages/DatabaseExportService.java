@@ -39,6 +39,7 @@ import org.w3c.dom.Element;
 /**
  * The Thread that exports FileObjects to a database.
  */
+@SuppressWarnings("unchecked")
 public class DatabaseExportService extends AbstractQueuedExportService {
 
 	static final Logger logger = Logger.getLogger(DatabaseExportService.class);
@@ -110,7 +111,7 @@ public class DatabaseExportService extends AbstractQueuedExportService {
 					dba = (DatabaseAdapter)adapterClass.getConstructor(signature).newInstance(args);
 				}
 				catch (Exception unableWithElement) {
-					try { dba = (DatabaseAdapter)adapterClass.newInstance(); }
+					try { dba = (DatabaseAdapter)adapterClass.getDeclaredConstructor().newInstance(); }
 					catch (Exception unableWithEmptyContstructor) {
 						logger.error(name+": Unable to load the Database class: " + adapterClassName);
 					}
@@ -309,7 +310,7 @@ public class DatabaseExportService extends AbstractQueuedExportService {
 				DatabaseAdapter dba;
 				try {
 					Class adapterClass = Class.forName(adapterClassName);
-					dba = (DatabaseAdapter)adapterClass.newInstance();
+					dba = (DatabaseAdapter)adapterClass.getDeclaredConstructor().newInstance();
 					if (dba.connect().equals(Status.OK)) {
 						StringBuffer sb = new StringBuffer();
 						sb.append("<result>\n");

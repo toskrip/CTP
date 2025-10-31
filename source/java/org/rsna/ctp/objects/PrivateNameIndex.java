@@ -21,7 +21,7 @@ public class PrivateNameIndex {
 	}
 	
 	public void putTag(String name, int tag) {
-		index.put(name.toLowerCase(), new Integer(tag));
+		index.put(name.toLowerCase(), Integer.valueOf(tag));
 	}
 	
 	public int getTag(String name) {

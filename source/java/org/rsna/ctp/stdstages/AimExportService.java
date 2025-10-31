@@ -9,6 +9,7 @@ package org.rsna.ctp.stdstages;
 
 import java.io.*;
 import java.net.HttpURLConnection;
+import java.net.URI;
 import java.net.URL;
 import java.net.URLEncoder;
 import org.apache.log4j.Logger;
@@ -48,7 +49,7 @@ public class AimExportService extends AbstractExportService {
 		super(element);
 
 		//Get the destination url
-		url = new URL(element.getAttribute("url").trim());
+		url = new URI(element.getAttribute("url").trim()).toURL();
 		protocol = url.getProtocol().toLowerCase();
 		if (!protocol.startsWith("https") && !protocol.startsWith("http")) {
 			logger.error(name+": Illegal protocol ("+protocol+")");

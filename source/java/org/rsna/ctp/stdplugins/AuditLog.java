@@ -156,7 +156,7 @@ public class AuditLog extends AbstractPlugin {
 										 String objectUID) throws Exception {
 		Integer id = getNextID();
 		entryTable.put(id, entry);
-		timeTable.put(id, new Long(System.currentTimeMillis()));
+		timeTable.put(id, Long.valueOf(System.currentTimeMillis()));
 		if (contentType != null) contentTypeTable.put(id, contentType);
 		if (patientID != null) appendID(patientIDIndex, patientID, id);
 		if (studyUID != null) appendID(studyUIDIndex, studyUID, id);
@@ -192,14 +192,15 @@ public class AuditLog extends AbstractPlugin {
 	private Integer getNextID() throws Exception {
 		try {
 			Integer id = (Integer)count.get(lastIDName);
-			if (id == null) id = new Integer(0);
-			id = new Integer( id.intValue() + 1 );
+			if (id == null) id = Integer.valueOf(0);
+			id = Integer.valueOf( id.intValue() + 1 );
 			count.put(lastIDName, id);
 			return id;
 		}
 		catch (Exception ex) { logger.warn("getNextID:",ex); throw ex; }
 	}
 
+	@SuppressWarnings("unchecked")
 	private void appendID(HTree index, String key, Integer id) throws Exception {
 		LinkedList<Integer> list = (LinkedList<Integer>)index.get(key);
 		if (list == null) list = new LinkedList<Integer>();
@@ -280,11 +281,12 @@ public class AuditLog extends AbstractPlugin {
 		int max = Math.max(x + 25, 1);
 		LinkedList<Integer> ids = new LinkedList<Integer>();
 		for (int k=min; (k<max) && (k<=lastID); k++) {
-			ids.add(new Integer(k));
+			ids.add(Integer.valueOf(k));
 		}
 		return ids;
 	}
 
+	@SuppressWarnings("unchecked")
 	private synchronized LinkedList<Integer> getIDs(HTree index, String key) {
 		LinkedList<Integer> list = null;
 		try { list = (LinkedList<Integer>)index.get(key); }

@@ -27,6 +27,7 @@ import org.w3c.dom.Element;
 /**
  * An indexing stage for objects which have been processed, providing a web interface.
  */
+@SuppressWarnings("unchecked")
 public class ObjectTracker extends AbstractPipelineStage implements Processor {
 
 	static final Logger logger = Logger.getLogger(ObjectTracker.class);

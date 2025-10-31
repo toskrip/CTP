@@ -38,6 +38,7 @@ import org.w3c.dom.Node;
  * objects submitted to a DatabaseExportService have made it all
  * the way to the database.
  */
+@SuppressWarnings("unchecked")
 public class DatabaseVerifier extends AbstractPipelineStage implements Processor {
 
 	static final Logger logger = Logger.getLogger(DatabaseVerifier.class);

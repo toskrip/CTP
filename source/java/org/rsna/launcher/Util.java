@@ -58,7 +58,7 @@ public class Util {
 		try {
 			Configuration config = Configuration.getInstance();
 			String protocol = "http" + (config.ssl?"s":"");
-			URL url = new URL( protocol, "127.0.0.1", config.port, "/shutdown");
+			URL url = new URI( protocol + "://127.0.0.1:" + config.port + "/shutdown").toURL();
 
 			HttpURLConnection conn = HttpUtil.getConnection( url );
 			conn.setRequestMethod("GET");
@@ -83,7 +83,7 @@ public class Util {
 	public static boolean isRunning() {
 		try {
 			Configuration config = Configuration.getInstance();
-			URL url = new URL("http" + (config.ssl?"s":"") + "://127.0.0.1:"+config.port);
+			URL url = new URI("http" + (config.ssl?"s":"") + "://127.0.0.1:"+config.port).toURL();
 			HttpURLConnection conn = HttpUtil.getConnection(url);
 			conn.setRequestMethod("GET");
 			conn.setConnectTimeout(500);

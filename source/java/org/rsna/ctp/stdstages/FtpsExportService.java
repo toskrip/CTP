@@ -1,6 +1,7 @@
 package org.rsna.ctp.stdstages;
 
 import java.io.*;
+import java.net.URI;
 import java.net.URL;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -56,7 +57,7 @@ public class FtpsExportService extends AbstractExportService {
 			throw new Exception();
 		}
 		urlString = "ftp" + urlString.substring(4); //so URL constructor accepts it.
-		URL url = new URL(urlString);
+		URL url = new URI(urlString).toURL();
 		host = url.getHost();
 		port = url.getPort();
 		if (port == -1) port = 21;

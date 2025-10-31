@@ -9,6 +9,7 @@ package org.rsna.ctp.stdstages;
 
 import java.io.*;
 import java.net.HttpURLConnection;
+import java.net.URI;
 import java.net.URL;
 import java.security.SecureRandom;
 import java.util.Hashtable;
@@ -100,7 +101,7 @@ public class HttpExportService extends AbstractExportService {
 		sendDigestHeader = element.getAttribute("sendDigestHeader").equals("yes");
 
 		//Get the destination url
-		url = new URL(element.getAttribute("url").trim());
+		url = new URI(element.getAttribute("url").trim()).toURL();
 
 		//Get the Content-Type
 		contentType = element.getAttribute("contentType").trim();
@@ -127,7 +128,7 @@ public class HttpExportService extends AbstractExportService {
 		}
 
 		//Get the destination url
-		url = new URL(element.getAttribute("url").trim());
+		url = new URI(element.getAttribute("url").trim()).toURL();
 		protocol = url.getProtocol().toLowerCase();
 		if (!protocol.startsWith("https") && !protocol.startsWith("http")) {
 			logger.error(name+": Illegal protocol ("+protocol+")");
@@ -236,7 +237,7 @@ public class HttpExportService extends AbstractExportService {
 					logger.warn("----------------------------------------------------------------");
 				}
 				recentUIDs.add(currentUID);
-				recentTimes.add( new Long( System.currentTimeMillis() ) );
+				recentTimes.add( Long.valueOf( System.currentTimeMillis() ) );
 				if (recentUIDs.size() > maxQueueSize) { recentUIDs.remove(); recentTimes.remove(); }
 				//*********************************************************************************************
 			}
@@ -453,12 +454,12 @@ public class HttpExportService extends AbstractExportService {
 				if (hasExtension) name = name.substring( 0, name.length() - ext.length() );
 				Integer count = names.get(name);
 				if (count == null) {
-					names.put(name, new Integer(1));
+					names.put(name, Integer.valueOf(1));
 					return name + (hasExtension ? ext : "");
 				}
 				else {
 					int n = count.intValue();
-					names.put(name, new Integer(n + 1));
+					names.put(name, Integer.valueOf(n + 1));
 					return name + "["+n+"]" + (hasExtension ? ext : "");
 				}
 			}
@@ -483,7 +484,7 @@ public class HttpExportService extends AbstractExportService {
 				String username = xnat.getAttribute("username").trim();
 				String password = xnat.getAttribute("password").trim();
 				credentials = "Basic " + Base64.encodeToString((username + ":" + password).getBytes());
-				try { url = new URL(urlString); }
+				try { url = new URI(urlString).toURL(); }
 				catch (Exception ex) {
 					logger.warn("Unable to construct XNAT URL: \""+urlString+"\"");
 				}

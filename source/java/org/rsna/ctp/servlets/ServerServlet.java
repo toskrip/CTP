@@ -26,6 +26,7 @@ import org.rsna.ctp.stdstages.ScriptableDicom;
  * calls on web pages which need to know key parameters of the server
  * (IP, port, CTP build).
  */
+@SuppressWarnings("unchecked")
 public class ServerServlet extends Servlet {
 
 	static final Logger logger = Logger.getLogger(ServerServlet.class);

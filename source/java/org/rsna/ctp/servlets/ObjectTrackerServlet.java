@@ -37,6 +37,7 @@ import org.w3c.dom.NodeList;
 /**
  * A Servlet that provides web access to the indexed data stored by an ObjectTracker pipeline stage.
  */
+@SuppressWarnings("unchecked")
 public class ObjectTrackerServlet extends CTPServlet {
 
 	static final Logger logger = Logger.getLogger(ObjectTrackerServlet.class);

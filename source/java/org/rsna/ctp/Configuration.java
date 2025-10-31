@@ -95,6 +95,7 @@ public class Configuration {
 	//The protected constructor. This can only be called by
 	//Configuration.getInstance(), thus ensuring that it is
 	//only called once.
+	@SuppressWarnings("unchecked")
 	protected Configuration() {
 		try {
 			//Log the environment

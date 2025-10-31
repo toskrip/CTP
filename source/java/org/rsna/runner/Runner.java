@@ -197,7 +197,7 @@ public class Runner {
     public static void shutdown() {
 		try {
 			String protocol = "http" + (ssl?"s":"");
-			URL url = new URL( protocol, "127.0.0.1", port, "shutdown");
+			URL url = new URI( protocol + "://127.0.0.1:" + port + "/shutdown").toURL();
 
 			HttpURLConnection conn = getConnection( url );
 			conn.setRequestMethod("GET");
@@ -216,7 +216,7 @@ public class Runner {
 
 	public static boolean isRunning() {
 		try {
-			URL url = new URL("http" + (ssl?"s":"") + "://127.0.0.1:"+port);
+			URL url = new URI("http" + (ssl?"s":"") + "://127.0.0.1:"+port).toURL();
 			HttpURLConnection conn = getConnection( url );
 			conn.setRequestMethod("GET");
 			conn.connect();

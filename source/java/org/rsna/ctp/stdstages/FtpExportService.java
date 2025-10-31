@@ -12,6 +12,7 @@ import com.enterprisedt.net.ftp.FTPConnectMode;
 import com.enterprisedt.net.ftp.FTPTransferType;
 import java.io.*;
 import java.net.HttpURLConnection;
+import java.net.URI;
 import java.net.URL;
 import java.security.SecureRandom;
 import java.util.Properties;
@@ -47,7 +48,7 @@ public class FtpExportService extends AbstractExportService {
 		String password = element.getAttribute("password").trim();
 
 		//Get the destination parameters
-		url = new URL(element.getAttribute("url").trim());
+		url = new URI(element.getAttribute("url").trim()).toURL();
 		String protocol = url.getProtocol().toLowerCase();
 		if (!protocol.equals("ftp")) {
 			logger.error(name+": Illegal protocol ("+protocol+")");

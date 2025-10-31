@@ -43,6 +43,7 @@ public class Pipeline extends Thread {
 	 * specifying the stages in the pipeline.
 	 * @param index of the pipeline (used by stages to find their pipeline).
 	 */
+	@SuppressWarnings("unchecked")
 	public Pipeline(Element pipeline, int index) {
 		super();
 		pipelineIndex = index;

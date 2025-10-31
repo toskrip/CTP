@@ -206,7 +206,7 @@ public class DicomStorageSCP extends DcmServiceBase {
 						logger.warn("----------------------------------------------------------------");
 					}
 					recentUIDs.add(currentUID);
-					recentTimes.add( new Long( System.currentTimeMillis() ) );
+					recentTimes.add( Long.valueOf( System.currentTimeMillis() ) );
 					if (recentUIDs.size() > maxQueueSize) { recentUIDs.remove(0); recentTimes.remove(0); }
 				}
 				//*********************************************************************************************

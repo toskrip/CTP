@@ -13,6 +13,7 @@ import java.io.StringWriter;
 import java.io.InputStreamReader;
 import java.util.Iterator;
 import java.net.HttpURLConnection;
+import java.net.URI;
 import java.net.URL;
 import javax.net.ssl.HttpsURLConnection;
 import javax.xml.parsers.DocumentBuilder;
@@ -45,6 +46,7 @@ import org.w3c.dom.Node;
 /**
  * The ClinicalTrialProcessor program.
  */
+@SuppressWarnings("unchecked")
 public class ClinicalTrialProcessor {
 
 	static final File libraries = new File("libraries");
@@ -116,7 +118,7 @@ public class ClinicalTrialProcessor {
 			int port = StringUtil.getInt(server.getAttribute("port").trim());
 			boolean ssl = server.getAttribute("ssl").trim().equals("yes");
 			
-			URL url = new URL( "http" + (ssl?"s":"") + "://127.0.0.1:" + port + "/shutdown" );
+			URL url = new URI( "http" + (ssl?"s":"") + "://127.0.0.1:" + port + "/shutdown" ).toURL();
 			HttpURLConnection conn = HttpUtil.getConnection(url);
 			conn.setRequestMethod("GET");
 			conn.setRequestProperty("servicemanager", "stayalive"); // was: "exit"

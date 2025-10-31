@@ -151,6 +151,7 @@ public class DBVerifierServlet extends CTPServlet {
 		}
 	}
 
+	@SuppressWarnings("unchecked")
 	private String getSummary(DatabaseVerifier verifier, int p, int s, String date, String ptid, String clear) {
 		if ((clear != null) && clear.equals("yes")) verifier.clearUnverifiedList();
 		StringBuffer sb = new StringBuffer();

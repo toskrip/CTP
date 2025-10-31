@@ -148,7 +148,7 @@ public abstract class AbstractImportService extends AbstractPipelineStage implem
 							logger.warn("----------------------------------------------------------------");
 						}
 						recentUIDs.add(currentUID);
-						recentTimes.add( new Long( System.currentTimeMillis() ) );
+						recentTimes.add( Long.valueOf( System.currentTimeMillis() ) );
 						if (recentUIDs.size() > maxQueueSize) { recentUIDs.remove(); recentTimes.remove(); }
 						//*********************************************************************************************
 					}

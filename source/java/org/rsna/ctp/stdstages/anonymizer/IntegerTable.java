@@ -77,8 +77,8 @@ public class IntegerTable {
 				logger.debug("...searching for "+lastIntKey);
 				Integer lastInt = (Integer)index.get(lastIntKey);
 				logger.debug("...got "+lastInt);
-				if (lastInt == null) lastInt = new Integer(0);
-				value = new Integer( lastInt.intValue() + 1 );
+				if (lastInt == null) lastInt = Integer.valueOf(0);
+				value = Integer.valueOf( lastInt.intValue() + 1 );
 				logger.debug("...storing "+value+" for "+lastIntKey);
 				index.put(lastIntKey, value);
 				logger.debug("...storing "+value+" for "+key);

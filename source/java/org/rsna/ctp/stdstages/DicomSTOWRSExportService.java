@@ -9,6 +9,7 @@ package org.rsna.ctp.stdstages;
 
 import java.io.*;
 import java.net.HttpURLConnection;
+import java.net.URI;
 import java.net.URL;
 import java.security.SecureRandom;
 import java.util.Hashtable;
@@ -72,7 +73,7 @@ public class DicomSTOWRSExportService extends AbstractExportService {
 		logDuplicates = element.getAttribute("logDuplicates").equals("yes");
 
 		//Get the destination url
-		url = new URL(element.getAttribute("url").trim());
+		url = new URI(element.getAttribute("url").trim()).toURL();
 		
 		//Get the flag for including the Content-Disposition header in requests
 		includeContentDispositionHeader = 
@@ -154,7 +155,7 @@ public class DicomSTOWRSExportService extends AbstractExportService {
 					logger.warn("----------------------------------------------------------------");
 				}
 				recentUIDs.add(currentUID);
-				recentTimes.add( new Long( System.currentTimeMillis() ) );
+				recentTimes.add( Long.valueOf( System.currentTimeMillis() ) );
 				if (recentUIDs.size() > maxQueueSize) { recentUIDs.remove(); recentTimes.remove(); }
 				//*********************************************************************************************
 			}

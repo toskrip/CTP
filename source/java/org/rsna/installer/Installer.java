@@ -997,7 +997,7 @@ public class Installer extends JFrame implements KeyListener {
 
 	private boolean checkServer(int port, boolean ssl) {
 		try {
-			URL url = new URL("http://127.0.0.1:"+port);
+			URL url = new URI("http://127.0.0.1:"+port).toURL();
 			HttpURLConnection conn = (HttpURLConnection)url.openConnection();
 			conn.setRequestMethod("GET");
 			conn.connect();
@@ -1017,7 +1017,7 @@ public class Installer extends JFrame implements KeyListener {
     public boolean shutdown(int port, boolean ssl) {
         try {
             String protocol = "http" + (ssl?"s":"");
-            URL url = new URL( protocol, "127.0.0.1", port, "shutdown");
+            URL url = new URI( protocol + "://127.0.0.1:" + port + "/shutdown").toURL();
 			HttpURLConnection conn = (HttpURLConnection)url.openConnection();
             conn.setRequestMethod("GET");
             conn.setRequestProperty("servicemanager", "shutdown");

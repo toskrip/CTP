@@ -19,6 +19,7 @@ import org.rsna.util.FileUtil;
 /**
  * An encapsulation of pixel regions.
  */
+@SuppressWarnings("unchecked")
 public class Regions {
 
 	static final Logger logger = Logger.getLogger(Regions.class);

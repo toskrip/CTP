@@ -107,7 +107,7 @@ public class DICOMAnonymizerContext {
 					int tag = getElementTag(key.substring(5, k));
 					if (tag != 0) {
 						//Store the script
-						Integer tagInteger = new Integer(tag);
+						Integer tagInteger = Integer.valueOf(tag);
 						scriptTable.put( tagInteger, cmds.getProperty(key) );
 
 						//If this is a private group element with a name, index the name.
@@ -195,7 +195,7 @@ public class DICOMAnonymizerContext {
 	 * no script is available for the specified tag.
 	 */
 	public String getScriptFor(int tag) {
-		return scriptTable.get( new Integer(tag) );
+		return scriptTable.get( Integer.valueOf(tag) );
 	}
 
 	/*
@@ -493,7 +493,7 @@ public class DICOMAnonymizerContext {
 						if ((blockOwnerID != null) && !(blockOwnerID=blockOwnerID.trim()).equals("")) {
 
 							//Get the index of this group
-							Integer gpInteger = new Integer(group);
+							Integer gpInteger = Integer.valueOf(group);
 							PrivateGroupIndex idx = index.get( gpInteger );
 							if (idx == null) {
 								idx = new PrivateGroupIndex();
@@ -506,7 +506,7 @@ public class DICOMAnonymizerContext {
 							//The standard doesn't seem to require this constraint, but
 							//objects in practice seem to observe it. There is a CP
 							//inprocess to require it.
-							idx.put( blockOwnerID, new Integer(tag) );
+							idx.put( blockOwnerID, Integer.valueOf(tag) );
 						}
 					}
 					catch (Exception skip) { }
@@ -516,7 +516,7 @@ public class DICOMAnonymizerContext {
 
 		public int getTagForID(int group, String id) {
 			if (id == null) return 0;
-			PrivateGroupIndex idx = index.get( new Integer(group) );
+			PrivateGroupIndex idx = index.get( Integer.valueOf(group) );
 			if (idx == null) return 0;
 			Integer tagInteger = idx.get(id.trim());
 			if (tagInteger == null) return 0;

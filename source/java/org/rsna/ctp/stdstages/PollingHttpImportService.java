@@ -13,6 +13,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
+import java.net.URI;
 import java.net.URL;
 import java.util.Enumeration;
 import java.util.zip.*;
@@ -45,7 +46,7 @@ public class PollingHttpImportService extends AbstractImportService {
 		super(element);
 
 		//Get the destination url
-		url = new URL(element.getAttribute("url").trim());
+		url = new URI(element.getAttribute("url").trim()).toURL();
 
 		//Get the attribute that specifies whether files
 		//are to be unzipped when received.

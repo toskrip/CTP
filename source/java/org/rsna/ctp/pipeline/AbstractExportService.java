@@ -76,7 +76,7 @@ public abstract class AbstractExportService extends AbstractQueuedExportService 
 			alt = alt.trim();
 			if (!alt.equals("")) {
 				int tag = DicomObject.getElementTag(alt);
-				if (tag != 0) auditLogTags.add(new Integer(tag));
+				if (tag != 0) auditLogTags.add(Integer.valueOf(tag));
 				else logger.warn(name+": Unknown DICOM element tag: \""+alt+"\"");
 			}
 		}

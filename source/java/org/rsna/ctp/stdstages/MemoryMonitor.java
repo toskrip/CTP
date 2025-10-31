@@ -58,7 +58,6 @@ public class MemoryMonitor extends AbstractPipelineStage implements Processor {
 		if ((count % interval) == 0) {
 
 			if (collectGarbage)  {
-				runtime.runFinalization();
 				runtime.gc();
 			}
 

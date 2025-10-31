@@ -142,7 +142,7 @@ public class AuditLogServlet extends Servlet {
 				if (entry != null) {
 
 					//This is a request for a specific entry
-					Integer id = new Integer(entry);
+					Integer id = Integer.valueOf(entry);
 					String entryText = auditLog.getText(id);
 					String entryTime = auditLog.getTime(id);
 					String entryContentType = auditLog.getContentType(id);

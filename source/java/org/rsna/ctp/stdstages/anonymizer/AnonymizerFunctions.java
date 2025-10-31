@@ -272,7 +272,7 @@ public class AnonymizerFunctions {
 	static SecureRandom secureRandom = null;
 	private static Cipher getCipher(String keyText, int mode) {
 		try {
-			Provider sunJce = new com.sun.crypto.provider.SunJCE();
+			Provider sunJce = java.security.Security.getProvider("SunJCE");
 			Security.addProvider(sunJce);
 			byte[] key = getEncryptionKey(keyText,128);
 			SecretKeySpec skeySpec = new SecretKeySpec(key,"Blowfish");

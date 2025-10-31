@@ -293,7 +293,7 @@ public class DICOMAnonymizer {
 					InputStream inStream = parser.getInputStream();
 					for (int i = 0; i < len; ++i) baos.write(inStream.read());
 					String creator = new String(baos.toByteArray()).toString().trim();
-					creatorIndex.put(new Integer(group), creator);
+					creatorIndex.put(Integer.valueOf(group), creator);
 					logger.debug("Creator element: "+Tags.toString(tag)+": \""+creator+"\"");
 					if (!context.rpg || context.kspe) {
 						logger.debug("Writing element: "+Tags.toString(tag));
@@ -311,7 +311,7 @@ public class DICOMAnonymizer {
 					String script = context.getScriptFor(tag);
 					boolean isSafePrivateElement = false;
 					if (isPrivate) {
-						String creator = creatorIndex.get(new Integer(group));
+						String creator = creatorIndex.get(Integer.valueOf(group));
 						logger.debug("Found creator \""+creator+"\" for "+Tags.toString(tag));
 						String code = ptIndex.getCode(group, creator, tag & 0xff).trim();
 						logger.debug("Got \""+code+"\" code for "+Tags.toString(tag));
